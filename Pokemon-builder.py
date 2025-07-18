@@ -102,22 +102,36 @@ if __name__ ==  '__main__':
         filename = os.path.join(os.getenv("path_to_folder"), filename)
         file = open(filename, "w")
 
-        file.write(f"""pokemonName: {pokemon_name}
-frontSprite: {{fileID: 0}}
-description: 
-backSprite: {{fileID: 0}}
-typeA: {type_a}
-typeB: {type_b}
-learnableMoves: []
-catchRate: {catch_rate}
-expYield: {exp_yield}
-growthRate: {growth_rate}
-hitpoints: {hitpoints}
-attack: {attack}
-defence: {defence}
-specialAttack: {special_attack}
-specialDefence: {special_defence}
-speed: {speed}""")
+        file.write(f"""%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {{fileID: 0}}
+  m_PrefabInstance: {{fileID: 0}}
+  m_PrefabAsset: {{fileID: 0}}
+  m_GameObject: {{fileID: 0}}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {{fileID: {os.getenv("file_id")}, guid: {os.getenv("guid")}, type: 3}}
+  m_Name: {dex_num}-{pokemon_name}
+  m_EditorClassIdentifier: 
+  pokemonName: {pokemon_name}
+  frontSprite: {{fileID: 0}}
+  description: 
+  backSprite: {{fileID: 0}}
+  typeA: {type_a}
+  typeB: {type_b}
+  learnableMoves: []
+  catchRate: {catch_rate}
+  expYield: {exp_yield}
+  growthRate: {growth_rate}
+  hitpoints: {hitpoints}
+  attack: {attack}
+  defence: {defence}
+  specialAttack: {special_attack}
+  specialDefence: {special_defence}
+  speed: {speed}""")
 
         is_done = input("are there others? [y/n]\n")
         if is_done.lower().startswith("n"):
