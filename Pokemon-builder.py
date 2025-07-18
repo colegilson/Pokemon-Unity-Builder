@@ -3,6 +3,7 @@ from enum import Enum
 import os
 
 dex_num = 0
+load_dotenv()
 
 class TYPES(Enum):
     NONE = 0
@@ -29,8 +30,6 @@ class GROWTH_RATES(Enum):
     MEDIUM_FAST = 1
     MEDIUM_SLOW = 2
     SLOW = 3
-
-load_dotenv()
 
 def dex_numbers() -> list:
     dex_numbers = []
@@ -65,15 +64,16 @@ if __name__ ==  '__main__':
             
         print(f"Give information for Pokemon with Pokedex number {dex_num} please")
         pokemon_name = input("What is this Pokemon's name?\n").lower().capitalize()
-        print(pokemon_name)
         type_a = input("What is the primary type?\n").upper()
         type_b = input("What is the primary type? ('none' for no secondary typing)\n").upper()
         
         for cur_type in TYPES:
-            if type(type_a) is str and type_a in str(cur_type):
+            if type(type_a) is str and type_a in str(cur_type.name):
                 type_a = cur_type.value
-            elif type(type_b) is str and type_b in str(cur_type):
+            elif type(type_b) is str and type_b in str(cur_type.name):
                 type_b = cur_type.value
+            elif type(type_a) is int and type(type_b) is int:
+                break
                 
         catch_rate = input("What is the catchrate? 1-255\n")
         exp_yield = input("How much exp do they yield?\n").upper()
@@ -117,8 +117,8 @@ MonoBehaviour:
   m_Name: {dex_num}-{pokemon_name}
   m_EditorClassIdentifier: 
   pokemonName: {pokemon_name}
-  frontSprite: {{fileID: 0}}
   description: 
+  frontSprite: {{fileID: 0}}
   backSprite: {{fileID: 0}}
   typeA: {type_a}
   typeB: {type_b}
@@ -133,6 +133,6 @@ MonoBehaviour:
   specialDefence: {special_defence}
   speed: {speed}""")
 
-        is_done = input("are there others? [y/n]\n")
+        is_done = input("are there others you'd like to add? [y/n]\n")
         if is_done.lower().startswith("n"):
             flag = False
