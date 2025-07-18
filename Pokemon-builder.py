@@ -76,12 +76,49 @@ if __name__ ==  '__main__':
                 type_b = cur_type.value
                 
         catch_rate = input("What is the catchrate? 1-255\n")
-        exp_yield = input("How much exp do they yield? (fast, medium_fast, medium_slow, slow)\n").upper()
+        exp_yield = input("How much exp do they yield?\n").upper()
+        growth_rate = input("What is the Pokemon growth speed? (fast, medium_fast, medium_slow, slow)\n").upper()
+
+        finding_growth_rate = True
+        while finding_growth_rate:
+            for rate in GROWTH_RATES:
+                if growth_rate == str(rate.name):
+                    growth_rate = rate.value
+                    finding_growth_rate = False
+                    break
+            if finding_growth_rate:
+                raise Exception("could not find growth rate")
+        
+        print("The following inputs are the BSTs of the Pokemon")
+        
+        hitpoints = int(input("What is the hitpoints?\n"))
+        attack = int(input("What is the attack?\n"))
+        defence = int(input("What is the defence?\n"))
+        special_attack = int(input("What is the special attack?\n"))
+        special_defence = int(input("What is the special defence\n"))
+        speed = int(input("What is the speed?\n"))
+        
+        filename = f"{dex_num}-{pokemon_name}.asset"
+        filename = os.path.join(os.getenv("path_to_folder"), filename)
+        file = open(filename, "w")
+
+        file.write(f"""pokemonName: {pokemon_name}
+frontSprite: {{fileID: 0}}
+description: 
+backSprite: {{fileID: 0}}
+typeA: {type_a}
+typeB: {type_b}
+learnableMoves: []
+catchRate: {catch_rate}
+expYield: {exp_yield}
+growthRate: {growth_rate}
+hitpoints: {hitpoints}
+attack: {attack}
+defence: {defence}
+specialAttack: {special_attack}
+specialDefence: {special_defence}
+speed: {speed}""")
 
         is_done = input("are there others? [y/n]\n")
         if is_done.lower().startswith("n"):
             flag = False
-
-
-    
-    # filename = f"{dex_num}-{pokemon_name}.asset"
