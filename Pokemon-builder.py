@@ -133,6 +133,8 @@ MonoBehaviour:
   specialDefence: {special_defence}
   speed: {speed}""")
 
+        file.close()
+
         is_done = input("are there others you'd like to add? [y/n]\n")
         if is_done.lower().startswith("n"):
             flag = False
