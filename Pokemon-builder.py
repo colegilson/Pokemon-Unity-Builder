@@ -212,10 +212,10 @@ frame = ttk.Frame(root, padding=10)
 frame.grid(row=0, column=0, sticky="nsew", padx=(32,32))
 
 # entries
-entry_labels = ["Dex Number:", "Name:", "Primary Type:", "Secondary Type:", "Catch Rate:", "EXP Yield:",
-"HP:", "Attack:", "Defence:", "Sp. Attack:", "Sp. Defence:", "Speed:"]
+entry_labels = ["Pokédex Number:", "Name:", "Primary Type:", "Secondary Type:", "Catch Rate:", "EXP Yield:",
+"Hitpoints:", "Attack:", "Defence:", "Sp. Attack:", "Sp. Defence:", "Speed:"]
 
-ttk.Label(frame, text="Dex Number:").grid(row=0, column=0, sticky="e")
+ttk.Label(frame, text="Pokédex Number:").grid(row=0, column=0, sticky="e")
 dex = ttk.Entry(frame, width=20)
 dex.grid(row=0, column=1)
 add_placeholder(dex, 4)
@@ -251,7 +251,7 @@ growth.set("FAST")
 growth.grid(row=6, column=1, padx=(0,1))
 
 # base stats
-ttk.Label(frame, text="hitpoints:").grid(row=7, column=0, sticky="e")
+ttk.Label(frame, text="Hitpoints:").grid(row=7, column=0, sticky="e")
 hitpoints = ttk.Entry(frame, width=20)
 hitpoints.grid(row=7, column=1)
 add_placeholder(hitpoints, 39)
