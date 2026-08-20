@@ -39,7 +39,7 @@ def dex_numbers() -> list:
     """
     dex_numbers = []
     try:
-        all_files = os.listdir(os.getenv("path_to_folder"))
+        all_files = os.listdir(os.getenv("path_to_folder_asset"))
     except:
         return []
     for file in all_files:
@@ -164,7 +164,7 @@ def save_pokemon() -> None:
     }
 
     filename = f"{dex_num}-{pokemon_name}.asset"
-    filepath = os.path.join(os.getenv("path_to_folder"), filename)
+    filepath = os.path.join(os.getenv("path_to_folder_asset"), filename)
 
     with open(filepath, "w") as file:
                 file.write(f"""%YAML 1.1
