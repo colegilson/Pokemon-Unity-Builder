@@ -21,9 +21,7 @@ def main():
         front_sprite_url = response["sprites"]["front_default"]
         back_sprite = Image.open(BytesIO(requests.get(back_sprite_url).content))
         front_sprite = Image.open(BytesIO(requests.get(front_sprite_url).content))
-
-        print(back_sprite)
-        print(front_sprite)
+        
         dex_num = f"{(i):03d}"
         filename = f"{dex_num}.png"
         back_sprite.save(os.path.join(os.getenv("path_to_folder_back"), filename))
