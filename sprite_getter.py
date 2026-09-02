@@ -1,8 +1,6 @@
 from dotenv import load_dotenv
-from enum import Enum
 import os
 import requests
-import json
 from PIL import Image
 from io import BytesIO
 
