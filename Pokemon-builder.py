@@ -4,6 +4,7 @@ from typing import Union
 from dotenv import load_dotenv
 from enum import Enum
 import os
+from sprite_adder import get_sprite_guids
 
 load_dotenv()
 
@@ -162,7 +163,7 @@ def save_pokemon() -> None:
         "specialDefence": special_defence.get(),
         "speed": speed.get()
     }
-
+    sprite_guids = get_sprite_guids(int(dex_num))
     filename = f"{dex_num}-{pokemon_name}.asset"
     filepath = os.path.join(os.getenv("path_to_folder_asset"), filename)
 
@@ -178,13 +179,13 @@ MonoBehaviour:
   m_GameObject: {{fileID: 0}}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {{fileID: {os.getenv("file_id")}, guid: {os.getenv("guid")}, type: 3}}
+  m_Script: {{fileID: {os.getenv("file_id_script")}, guid: {os.getenv("guid_script")}, type: 3}}
   m_Name: {dex_num}-{pokemon_name}
   m_EditorClassIdentifier: 
   pokemonName: {pokemon_name}
   description: 
-  frontSprite: {{fileID: 0}}
-  backSprite: {{fileID: 0}}
+  frontSprite: {{fileID: {os.getenv("file_id_sprite")}, guid: {sprite_guids[0]}, type: 3}}
+  backSprite: {{fileID: {os.getenv("file_id_sprite")}, guid: {sprite_guids[1]}, type: 3}}
   typeA: {type_a}
   typeB: {type_b}
   learnableMoves: []
@@ -196,7 +197,8 @@ MonoBehaviour:
   defence: {stats['defence']}
   specialAttack: {stats['specialAttack']}
   specialDefence: {stats['specialDefence']}
-  speed: {stats['speed']}""")
+  speed: {stats['speed']}"""
+  )
                 
     messagebox.showinfo("Saved", f"Saved {filename} successfully!")
 
